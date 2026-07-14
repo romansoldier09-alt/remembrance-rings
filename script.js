@@ -34,16 +34,6 @@ if (header) {
   window.addEventListener('scroll', updateHeader);
 }
 
-document.querySelectorAll('.product-gallery-page').forEach(gallery => {
-  const main = gallery.querySelector('[data-gallery-main]');
-  const thumbs = [...gallery.querySelectorAll('.gallery-thumb')];
-  thumbs.forEach(button => button.addEventListener('click', () => {
-    main.src = button.dataset.image;
-    thumbs.forEach(item => item.classList.remove('is-active'));
-    button.classList.add('is-active');
-  }));
-});
-
 const params = new URLSearchParams(window.location.search);
 const ring = params.get('ring');
 const select = document.querySelector('#ring-selection');

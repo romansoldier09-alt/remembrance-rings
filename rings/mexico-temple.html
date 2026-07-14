@@ -77,9 +77,18 @@
         <h2>Real product details.</h2>
         <p>These product photos are the source of truth for ring shape, engraving, proportions, and metal finish.</p>
       </div>
-      <div class="product-gallery-page reveal">
-        <div class="gallery-stage"><img data-gallery-main src="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg" alt="Mexico Temple Ring selected product view"></div>
-        <div class="gallery-thumbs"><button class="gallery-thumb is-active" type="button" data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg" alt="Mexico Temple Ring product detail view 1" loading="lazy"></button><button class="gallery-thumb" type="button" data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-left-1.jpeg"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-left-1.jpeg" alt="Mexico Temple Ring product detail view 2" loading="lazy"></button><button class="gallery-thumb" type="button" data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-right-1.jpeg"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-right-1.jpeg" alt="Mexico Temple Ring product detail view 3" loading="lazy"></button></div>
+      <div class="carousel reveal" data-carousel aria-roledescription="carousel" aria-label="Mexico Temple Ring product gallery">
+        <div class="carousel-stage">
+          <button class="carousel-arrow prev" type="button" data-carousel-prev aria-label="Previous image"><span aria-hidden="true">&#8249;</span></button>
+          <img data-carousel-main src="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg" alt="Mexico Temple Ring silver signet ring, front view" width="1650" height="1100" fetchpriority="high">
+          <button class="carousel-arrow next" type="button" data-carousel-next aria-label="Next image"><span aria-hidden="true">&#8250;</span></button>
+          <p class="carousel-count" data-carousel-count aria-live="polite">1 of 3</p>
+        </div>
+        <div class="carousel-thumbs" role="tablist" aria-label="Mexico Temple Ring gallery thumbnails">
+          <button class="carousel-thumb is-active" type="button" role="tab" aria-selected="true" tabindex="0" aria-label="Show image 1 of 3: front view" data-carousel-thumb data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg" data-alt="Mexico Temple Ring silver signet ring, front view"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-front-1.jpeg" alt="" width="800" height="533" loading="eager"></button>
+          <button class="carousel-thumb" type="button" role="tab" aria-selected="false" tabindex="-1" aria-label="Show image 2 of 3: left profile view" data-carousel-thumb data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-left-1.jpeg" data-alt="Mexico Temple Ring silver signet ring, left profile view"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-left-1.jpeg" alt="" width="800" height="533" loading="lazy"></button>
+          <button class="carousel-thumb" type="button" role="tab" aria-selected="false" tabindex="-1" aria-label="Show image 3 of 3: right profile view" data-carousel-thumb data-image="../assets/photos/products/mexico-temple/mexico-temple-closeup-right-1.jpeg" data-alt="Mexico Temple Ring silver signet ring, right profile view"><img src="../assets/photos/products/mexico-temple/mexico-temple-closeup-right-1.jpeg" alt="" width="800" height="533" loading="lazy"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -139,5 +148,6 @@
   <div class="container footer-bottom">© 2026 Remembrance Rings. All rights reserved.</div>
 </footer>
 <script src="../script.js"></script>
+<script src="../assets/js/carousel.js"></script>
 </body>
 </html>
