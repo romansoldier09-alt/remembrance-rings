@@ -98,12 +98,12 @@ main{display:block}
 .value-grid article{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 8px 24px rgba(16,16,15,.04)}
 .value-grid span,.story-stack span{display:inline-block;margin-bottom:16px;font-size:.74rem;letter-spacing:.22em;font-weight:800;color:var(--green)}
 .value-grid ul,.order-side-card ul{margin:0;padding-left:1.15rem;color:var(--gray)}
-.movement-preview{padding:140px 0;background:linear-gradient(rgba(17,17,15,.68),rgba(17,17,15,.68)),url('assets/photos/lifestyle/girl-temple-fountain-vertical.jpg') center 36%/cover;color:#fff}
+.movement-preview{padding:140px 0;background:linear-gradient(rgba(17,17,15,.68),rgba(17,17,15,.68)),url("./assets/photos/lifestyle/girl-temple-fountain-vertical.png") center 36%/cover;color:#fff}
 .movement-preview h2,.movement-preview p{color:#fff}
 .final-cta{background:#fff}
 .page-hero{padding:100px 0 60px}
 .page-hero-soft{background:linear-gradient(180deg,#f9f7f1 0%, var(--ivory) 100%)}
-.movement-hero{background:linear-gradient(rgba(17,17,15,.68),rgba(17,17,15,.68)),url('assets/photos/lifestyle/girl-temple-door-vertical.jpg') center 20%/cover;color:#fff}
+.movement-hero{background:linear-gradient(rgba(17,17,15,.68),rgba(17,17,15,.68)),url("./assets/photos/lifestyle/girl-temple-door-vertical.png") center 20%/cover;color:#fff}
 .movement-hero h1,.movement-hero p{color:#fff}
 .catalog{grid-template-columns:repeat(4,1fr)}
 .collection-support{padding-top:0}
