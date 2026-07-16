@@ -201,3 +201,6 @@ textarea{resize:vertical;min-height:130px}
 @media (prefers-reduced-motion: reduce){
   .carousel-arrow,.carousel-thumb{transition:none}
 }
+
+/* Brand monogram in header */
+.brand-mark-logo{height:40px;width:auto;display:block}
