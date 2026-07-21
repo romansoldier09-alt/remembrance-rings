@@ -61,3 +61,23 @@ document.querySelectorAll('.reveal').forEach(element => {
   if (observer) observer.observe(element);
   else element.classList.add('is-visible');
 });
+
+
+// Per-design size availability (Original 2017 Production)
+(function(){
+  var sizes = {
+    "Child of God": ["Men's 9","Men's 9.5","Men's 10.5","Women's 9","Women's 10"],
+    "Faith in Every Footstep": ["Men's 9","Men's 9.5","Men's 10","Women's 6.5","Women's 7.5","Women's 8.5","Women's 9.5"],
+    "Salt Lake Temple Ring": ["Men's 8.5","Men's 9","Men's 9.5","Women's 6","Women's 8.5","Women's 9.5"]
+  };
+  var ring = document.getElementById('ring-selection');
+  var size = document.querySelector('[data-size-select]');
+  if (!ring || !size) return;
+  function fill(){
+    var opts = sizes[ring.value] || [];
+    size.innerHTML = '<option value="">' + (opts.length ? 'Select size' : 'Select a ring first') + '</option>' +
+      opts.map(function(o){ return '<option value="' + o + '">' + o + '</option>'; }).join('');
+  }
+  ring.addEventListener('change', fill);
+  fill();
+})();
