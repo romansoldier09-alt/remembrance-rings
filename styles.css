@@ -211,3 +211,41 @@ textarea{resize:vertical;min-height:130px}
 .size-count{color:var(--green);font-size:.85em;font-weight:600}
 .size-note{margin-top:14px;font-size:.92rem;color:var(--gray)}
 .specs-cols h3{margin-bottom:10px}
+
+/* ---- Inventory size chips (product pages) ------------------------------ */
+.size-chips-host{margin:22px 0 8px}
+.size-chip-row{margin:0 0 16px}
+.size-chip-label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-bottom:9px}
+.size-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.size-chip{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:64px;min-height:56px;padding:8px 14px;border-radius:16px;border:1px solid var(--warm);background:var(--paper);line-height:1.1}
+.size-chip-size{font-weight:800;font-size:1rem;color:var(--ink)}
+.size-chip-state{margin-top:3px;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
+.size-chip.is-available{border-color:var(--warm)}
+.size-chip.is-available .size-chip-state{color:var(--green)}
+.size-chip.is-low{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
+.size-chip.is-low .size-chip-state{color:var(--green)}
+.size-chip.is-sold-out{background:transparent;border-style:solid;border-color:var(--line);opacity:.6}
+.size-chip.is-sold-out .size-chip-size{text-decoration:line-through;color:var(--gray)}
+.size-chip.is-not-produced{background:transparent;border-style:dashed;border-color:var(--warm);opacity:.55}
+.size-chip.is-not-produced .size-chip-size{color:var(--gray)}
+.size-chip-note{margin-top:6px;font-size:.86rem;color:var(--gray);font-style:italic}
+
+/* ---- Order form: no-silent-loss fallback ------------------------------ */
+.order-fallback{margin-top:20px;padding:20px 22px;border:1px solid var(--warm);border-radius:var(--radius-md);background:#fbf3ee}
+.order-fallback p{margin:0 0 12px;color:var(--ink)}
+.order-fallback .button{margin-bottom:12px}
+.order-fallback-alt{font-size:.9rem;color:var(--gray)}
+.order-fallback a{color:var(--ink)}
+
+/* ---- Footer social icons ---------------------------------------------- */
+.footer-social{display:flex;gap:14px;margin-top:4px}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:#efe9dc;transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+.footer-social a svg{width:20px;height:20px;display:block}
+.footer-social a:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+.footer-social a:focus-visible{outline:2px solid #efe9dc;outline-offset:3px;background:rgba(255,255,255,.12)}
+.archive-status{margin:2px 0 18px;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.product-card.is-archive{border:1px dashed var(--warm);background:transparent}
+.product-card.is-archive .price{color:var(--gray);font-weight:700}
+.archive-section .section-heading{margin-bottom:26px}
+.size-chip.is-pending{border-color:var(--warm)}
+.size-chip.is-pending .size-chip-size{color:var(--ink)}

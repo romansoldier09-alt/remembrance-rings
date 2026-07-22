@@ -41,7 +41,6 @@ if (ring && select) {
   const map = {
     'child-of-god': 'Child of God',
     'faith-in-every-footstep': 'Faith in Every Footstep',
-    'mexico-temple': 'Mexico Temple Ring',
     'salt-lake-temple': 'Salt Lake Temple Ring'
   };
   if (map[ring]) select.value = map[ring];
@@ -63,21 +62,97 @@ document.querySelectorAll('.reveal').forEach(element => {
 });
 
 
-// Per-design size availability (Original 2017 Production)
-(function(){
-  var sizes = {
-    "Child of God": ["Men's 9","Men's 9.5","Men's 10.5","Women's 9","Women's 10"],
-    "Faith in Every Footstep": ["Men's 9","Men's 9.5","Men's 10","Women's 6.5","Women's 7.5","Women's 8.5","Women's 9.5"],
-    "Salt Lake Temple Ring": ["Men's 8.5","Men's 9","Men's 9.5","Women's 6","Women's 8.5","Women's 9.5"]
-  };
-  var ring = document.getElementById('ring-selection');
-  var size = document.querySelector('[data-size-select]');
-  if (!ring || !size) return;
-  function fill(){
-    var opts = sizes[ring.value] || [];
-    size.innerHTML = '<option value="">' + (opts.length ? 'Select size' : 'Select a ring first') + '</option>' +
-      opts.map(function(o){ return '<option value="' + o + '">' + o + '</option>'; }).join('');
+// Per-design size availability is now handled by assets/js/sizes.js, which
+// reads the single centralized source in assets/js/inventory.js.
+// (No size data is defined here — do not re-add it, to avoid duplication.)
+
+
+// ---- Order form: reliable submit with branded redirect + no-silent-loss fallback ----
+(function () {
+  var form = document.querySelector('form.order-form');
+  if (!form) return;
+
+  var THANK_YOU = 'https://remembrancerings.com/thank-you.html';
+  var CONTACT   = 'remembrancerings1@gmail.com';
+  var fallback  = document.getElementById('order-fallback');
+  var btn       = form.querySelector('button[type="submit"]');
+
+  function buildMailto() {
+    var get = function (n) {
+      var el = form.querySelector('[name="' + n + '"]');
+      return el ? el.value.trim() : '';
+    };
+    var lines = [
+      'Full Name: ' + get('Full Name'),
+      'Email: ' + get('Email'),
+      'Phone Number: ' + get('Phone Number'),
+      'Ring Selection: ' + get('Ring Selection'),
+      'Ring Size: ' + get('Ring Size'),
+      'Delivery Preference: ' + get('Delivery Preference'),
+      'Preferred Contact Method: ' + get('Preferred Contact Method'),
+      'Message: ' + get('Message')
+    ].join('\n');
+    return 'mailto:' + CONTACT +
+      '?subject=' + encodeURIComponent('New Remembrance Rings Order Request') +
+      '&body=' + encodeURIComponent(lines);
   }
-  ring.addEventListener('change', fill);
-  fill();
+
+  function showFallback() {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send Order Request'; }
+    if (!fallback) { window.location.href = buildMailto(); return; }
+    var link = fallback.querySelector('[data-fallback-link]');
+    if (link) link.setAttribute('href', buildMailto());
+    fallback.hidden = false;
+    fallback.setAttribute('tabindex', '-1');
+    fallback.focus();
+    fallback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  var PLACEHOLDER_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
+  function keyReady() {
+    var k = form.querySelector('[name="access_key"]');
+    var v = k ? k.value.trim() : '';
+    return v !== '' && v !== PLACEHOLDER_KEY;
+  }
+
+  form.addEventListener('submit', function (e) {
+    // Honeypot: if a bot filled the hidden checkbox, silently drop.
+    var honey = form.querySelector('[name="botcheck"]');
+    if (honey && honey.checked) { e.preventDefault(); return; }
+
+    // Let native validation run first.
+    if (!form.checkValidity()) return; // browser shows the messages
+
+    e.preventDefault();
+
+    // Safety: if the real Web3Forms key has not been pasted in yet, do NOT
+    // attempt a submission that would fail silently — route straight to the
+    // visible email fallback so no order is ever lost.
+    if (!keyReady()) { showFallback(); return; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    var data = new FormData(form);
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 15000);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' },
+      signal: controller.signal
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        clearTimeout(timer);
+        if (res.ok && res.j && res.j.success) {
+          window.location.href = THANK_YOU;
+        } else {
+          showFallback();
+        }
+      })
+      .catch(function () {
+        clearTimeout(timer);
+        showFallback();
+      });
+  });
 })();
